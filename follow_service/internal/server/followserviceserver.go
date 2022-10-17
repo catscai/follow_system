@@ -25,7 +25,7 @@ func NewFollowServiceServer(svcCtx *svc.ServiceContext) *FollowServiceServer {
 	}
 }
 
-func (s *FollowServiceServer) Ping(ctx context.Context, in *follow_service.FollowReq) (*follow_service.FollowRsp, error) {
+func (s *FollowServiceServer) Follow(ctx context.Context, in *follow_service.FollowRQ) (*follow_service.FollowRS, error) {
 	tokenCtx := svc.TokenContext{
 		Context: ctx,
 	}
@@ -38,6 +38,40 @@ func (s *FollowServiceServer) Ping(ctx context.Context, in *follow_service.Follo
 
 		}
 	}
-	l := logic.NewPingLogic(tokenCtx, s.svcCtx)
-	return l.Ping(in)
+	l := logic.NewFollowLogic(tokenCtx, s.svcCtx)
+	return l.Follow(in)
+}
+
+func (s *FollowServiceServer) GetFollowList(ctx context.Context, in *follow_service.GetFollowListRQ) (*follow_service.GetFollowListRS, error) {
+	tokenCtx := svc.TokenContext{
+		Context: ctx,
+	}
+	md, ok := metadata.FromIncomingContext(ctx)
+	if ok {
+		if datas, ok := md["context"]; ok && len(datas) > 0 {
+			if err := json.Unmarshal([]byte(datas[0]), &tokenCtx.COMM); err != nil {
+				logx.WithContext(ctx).Error("context common data json Unmarshal failed, data:", datas[0], "err:", err)
+			}
+
+		}
+	}
+	l := logic.NewGetFollowListLogic(tokenCtx, s.svcCtx)
+	return l.GetFollowList(in)
+}
+
+func (s *FollowServiceServer) GetFansList(ctx context.Context, in *follow_service.GetFansListRQ) (*follow_service.GetFansListRS, error) {
+	tokenCtx := svc.TokenContext{
+		Context: ctx,
+	}
+	md, ok := metadata.FromIncomingContext(ctx)
+	if ok {
+		if datas, ok := md["context"]; ok && len(datas) > 0 {
+			if err := json.Unmarshal([]byte(datas[0]), &tokenCtx.COMM); err != nil {
+				logx.WithContext(ctx).Error("context common data json Unmarshal failed, data:", datas[0], "err:", err)
+			}
+
+		}
+	}
+	l := logic.NewGetFansListLogic(tokenCtx, s.svcCtx)
+	return l.GetFansList(in)
 }

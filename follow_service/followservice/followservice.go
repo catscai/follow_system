@@ -13,11 +13,17 @@ import (
 )
 
 type (
-	FollowReq = follow_service.FollowReq
-	FollowRsp = follow_service.FollowRsp
+	FollowRQ        = follow_service.FollowRQ
+	FollowRS        = follow_service.FollowRS
+	GetFansListRQ   = follow_service.GetFansListRQ
+	GetFansListRS   = follow_service.GetFansListRS
+	GetFollowListRQ = follow_service.GetFollowListRQ
+	GetFollowListRS = follow_service.GetFollowListRS
 
 	FollowService interface {
-		Ping(ctx context.Context, in *FollowReq, opts ...grpc.CallOption) (*FollowRsp, error)
+		Follow(ctx context.Context, in *FollowRQ, opts ...grpc.CallOption) (*FollowRS, error)
+		GetFollowList(ctx context.Context, in *GetFollowListRQ, opts ...grpc.CallOption) (*GetFollowListRS, error)
+		GetFansList(ctx context.Context, in *GetFansListRQ, opts ...grpc.CallOption) (*GetFansListRS, error)
 	}
 
 	defaultFollowService struct {
@@ -31,7 +37,17 @@ func NewFollowService(cli zrpc.Client) FollowService {
 	}
 }
 
-func (m *defaultFollowService) Ping(ctx context.Context, in *FollowReq, opts ...grpc.CallOption) (*FollowRsp, error) {
+func (m *defaultFollowService) Follow(ctx context.Context, in *FollowRQ, opts ...grpc.CallOption) (*FollowRS, error) {
 	client := follow_service.NewFollowServiceClient(m.cli.Conn())
-	return client.Ping(ctx, in, opts...)
+	return client.Follow(ctx, in, opts...)
+}
+
+func (m *defaultFollowService) GetFollowList(ctx context.Context, in *GetFollowListRQ, opts ...grpc.CallOption) (*GetFollowListRS, error) {
+	client := follow_service.NewFollowServiceClient(m.cli.Conn())
+	return client.GetFollowList(ctx, in, opts...)
+}
+
+func (m *defaultFollowService) GetFansList(ctx context.Context, in *GetFansListRQ, opts ...grpc.CallOption) (*GetFansListRS, error) {
+	client := follow_service.NewFollowServiceClient(m.cli.Conn())
+	return client.GetFansList(ctx, in, opts...)
 }

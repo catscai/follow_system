@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package follow_service;
+option go_package="./follow_service";
+import "common.proto";
+
+message FollowReq {
+  int32  opt = 1;
+  int64  uid = 2;
+  int64  fans = 3;
+  int32  event_type = 4;
+}
+
+message FollowRsp {
+  common.ErrorInfo err = 1;
+  int32  opt = 2;
+  int64  uid = 3;
+  int64  fans = 4;
+  int32  event_type = 5; 
+}
+
+service Follow_service {
+  rpc Ping(FollowReq) returns(FollowRsp);
+}

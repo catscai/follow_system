@@ -3,6 +3,7 @@ module follow_system
 go 1.19
 
 require (
+	github.com/go-redis/redis/v8 v8.11.5
 	github.com/zeromicro/go-zero v1.4.1
 	google.golang.org/genproto v0.0.0-20220602131408-e326c6e8e9c8
 	google.golang.org/grpc v1.50.1
@@ -21,7 +22,7 @@ require (
 	github.com/fullstorydev/grpcurl v1.8.7 // indirect
 	github.com/go-logr/logr v1.2.3 // indirect
 	github.com/go-logr/stdr v1.2.2 // indirect
-	github.com/go-redis/redis/v8 v8.11.5 // indirect
+	github.com/go-sql-driver/mysql v1.6.0 // indirect
 	github.com/gogo/protobuf v1.3.2 // indirect
 	github.com/golang-jwt/jwt/v4 v4.4.2 // indirect
 	github.com/golang/mock v1.6.0 // indirect

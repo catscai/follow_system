@@ -25,6 +25,8 @@ message FollowRS {
 message GetFollowListRQ {
   optional int32   event_type = 1;
   optional int64   uid = 2;
+  optional int32    beg = 3;
+  optional int32    end = 4;
 }
 
 message GetFollowListRS {
@@ -32,11 +34,15 @@ message GetFollowListRS {
   optional int64   uid = 2;
   repeated int64 follow_list = 3;
   optional Common.ErrorInfo err = 4;
+  optional int32    beg = 5;
+  optional int32    end = 6;
 }
 
 message GetFansListRQ {
   optional int32   event_type = 1;
   optional int64   uid = 2;
+  optional int32    beg = 3;
+  optional int32    end = 4;
 }
 
 message GetFansListRS {
@@ -44,6 +50,8 @@ message GetFansListRS {
   optional int64   uid = 2;
   repeated int64 fans_list = 3;
   optional Common.ErrorInfo err = 4;
+  optional int32    beg = 5;
+  optional int32    end = 6;
 }
 
 

@@ -8,6 +8,9 @@ import (
 
 type Config struct {
 	zrpc.RpcServerConf
-	Gateway    gateway.GatewayConf
-	CacheRedis redis.RedisConf
+	Gateway     gateway.GatewayConf
+	CacheRedis  redis.RedisConf
+	FollowMysql struct {
+		DataSource string
+	}
 }

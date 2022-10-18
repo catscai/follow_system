@@ -23,6 +23,6 @@ func NewGetFansListLogic(ctx svc.TokenContext, svcCtx *svc.ServiceContext) *GetF
 
 func (l *GetFansListLogic) GetFansList(in *Follow.GetFansListRQ) (*Follow.GetFansListRS, error) {
 	// todo: add your logic here and delete this line
-
+	
 	return &Follow.GetFansListRS{}, nil
 }

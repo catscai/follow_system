@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package Common;
+option go_package="./Common";
+
+message ErrorInfo {
+    int32 code = 1;
+    string msg = 2;
+}

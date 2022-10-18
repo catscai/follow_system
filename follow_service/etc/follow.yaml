@@ -1,0 +1,17 @@
+Name: follow.rpc
+ListenOn: 127.0.0.1:2233
+Etcd:
+  Hosts:
+  - 127.0.0.1:2379
+  Key: follow.rpc
+Gateway:
+  Name: gateway
+  Port: 2232
+  Upstreams:
+    - Grpc:
+        Endpoints:
+          - localhost:2233
+      ProtoSet: follow.pb
+CacheRedis:
+  - Host: 127.0.0.1:19000
+    Type: node

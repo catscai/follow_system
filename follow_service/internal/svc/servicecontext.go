@@ -3,10 +3,13 @@ package svc
 import (
 	"context"
 	"follow_system/follow_service/internal/config"
+
+	"github.com/go-redis/redis/v8"
 )
 
 type ServiceContext struct {
-	Config config.Config
+	Config     config.Config
+	CacheRedis *redis.Client
 }
 
 type CommonData struct {
@@ -20,7 +23,13 @@ type TokenContext struct {
 }
 
 func NewServiceContext(c config.Config) *ServiceContext {
+	cacheRedis := redis.NewClient(&redis.Options{
+		Addr:     c.CacheRedis.Host,
+		Password: c.CacheRedis.Pass,
+		DB:       0,
+	})
 	return &ServiceContext{
-		Config: c,
+		Config:     c,
+		CacheRedis: cacheRedis,
 	}
 }

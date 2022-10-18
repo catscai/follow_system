@@ -1,0 +1,69 @@
+syntax = "proto2";
+
+package Follow;
+
+option go_package="./Follow";
+
+import "Common.proto";
+import "google/api/annotations.proto";
+
+message FollowRQ {
+  optional int32  opt = 1;  // 0-关注 1-取消
+  optional int64  uid = 2;
+  optional int64  fans = 3;
+  optional int32  event_type = 4;
+}
+
+message FollowRS {
+  optional Common.ErrorInfo err = 1;
+  optional int32  opt = 2;
+  optional int64  uid = 3;
+  optional int64  fans = 4;
+  optional int32  event_type = 5; 
+}
+
+message GetFollowListRQ {
+  optional int32   event_type = 1;
+  optional int64   uid = 2;
+}
+
+message GetFollowListRS {
+  optional int32   event_type = 1;
+  optional int64   uid = 2;
+  repeated int64 follow_list = 3;
+  optional Common.ErrorInfo err = 4;
+}
+
+message GetFansListRQ {
+  optional int32   event_type = 1;
+  optional int64   uid = 2;
+}
+
+message GetFansListRS {
+  optional int32   event_type = 1;
+  optional int64   uid = 2;
+  repeated int64 fans_list = 3;
+  optional Common.ErrorInfo err = 4;
+}
+
+
+service Follow_service {
+  rpc Follow(FollowRQ) returns(FollowRS) {
+    option (google.api.http) = {
+      post: "/follow"
+      body: "*"
+    };
+  }
+  rpc GetFollowList(GetFollowListRQ) returns(GetFollowListRS) {
+    option (google.api.http) = {
+      post: "/getFollowList"
+      body: "*"
+    };
+  }
+  rpc GetFansList(GetFansListRQ) returns(GetFansListRS) {
+    option (google.api.http) = {
+      post: "/getFansList"
+      body: "*"
+    };
+  }
+}

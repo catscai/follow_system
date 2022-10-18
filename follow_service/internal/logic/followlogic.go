@@ -2,7 +2,7 @@ package logic
 
 import (
 	"follow_system/follow_service/internal/svc"
-	"follow_system/follow_service/root/go/src/follow_system/pb/follow_service"
+	"follow_system/pb/Follow"
 
 	"github.com/zeromicro/go-zero/core/logx"
 )
@@ -21,8 +21,8 @@ func NewFollowLogic(ctx svc.TokenContext, svcCtx *svc.ServiceContext) *FollowLog
 	}
 }
 
-func (l *FollowLogic) Follow(in *follow_service.FollowRQ) (*follow_service.FollowRS, error) {
+func (l *FollowLogic) Follow(in *Follow.FollowRQ) (*Follow.FollowRS, error) {
 	// todo: add your logic here and delete this line
-
-	return &follow_service.FollowRS{}, nil
+	
+	return &Follow.FollowRS{}, nil
 }

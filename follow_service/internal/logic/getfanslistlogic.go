@@ -2,7 +2,7 @@ package logic
 
 import (
 	"follow_system/follow_service/internal/svc"
-	"follow_system/follow_service/root/go/src/follow_system/pb/follow_service"
+	"follow_system/pb/Follow"
 
 	"github.com/zeromicro/go-zero/core/logx"
 )
@@ -21,8 +21,8 @@ func NewGetFansListLogic(ctx svc.TokenContext, svcCtx *svc.ServiceContext) *GetF
 	}
 }
 
-func (l *GetFansListLogic) GetFansList(in *follow_service.GetFansListRQ) (*follow_service.GetFansListRS, error) {
+func (l *GetFansListLogic) GetFansList(in *Follow.GetFansListRQ) (*Follow.GetFansListRS, error) {
 	// todo: add your logic here and delete this line
 
-	return &follow_service.GetFansListRS{}, nil
+	return &Follow.GetFansListRS{}, nil
 }

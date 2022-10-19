@@ -30,7 +30,7 @@ func NewServiceContext(c config.Config) *ServiceContext {
 		Password: c.CacheRedis.Pass,
 		DB:       0,
 	})
-	conn := sqlx.NewMysql(c.FollowMysql.DataSource)
+	conn := sqlx.NewSqlConn("mysql", c.FollowMysql.DataSource)
 	return &ServiceContext{
 		Config:      c,
 		CacheRedis:  cacheRedis,
